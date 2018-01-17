@@ -23,3 +23,29 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+.cards{
+    margin-bottom: 20px;
+    padding: 8px 16px 8px 8px;
+    height: 264px;
+    // width: 900px;
+}
+.cardsImg{
+    position: absolute;
+    height: 248px;
+    width: 320px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-left: 1px;
+    background-size: cover;
+    background-position: 50%;
+}
+.cardsTitle{
+    font-weight: bold;
+}
+.cardsDescription{
+    font-size: 16px;
+    line-height: 22px;
+}
+.cardButtons{
+    padding: 16px;
+}
