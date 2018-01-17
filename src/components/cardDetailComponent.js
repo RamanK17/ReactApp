@@ -63,7 +63,7 @@ class CardDetailComponent extends React.Component{
                         <CardText style={{fontWeight:"300",fontSize:"16px",lineHeight:"22px"}}>
                             {this.props.detail.description.substring(0,256)+"...."}
                         </CardText>
-                        <CardActions style={{padding:"16px"}} className="mui--text-left">
+                        <CardActions style={{padding:"5px"}} className="mui--text-left">
                             <IconButton onClick={()=>this.likeClick(indexValue)}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
                             <IconButton onClick={()=>this.bookmark(indexValue)} iconStyle={{color:this.state.bookmarkFlag?"yellow":"black"}}><FontIcon className="material-icons">bookmark</FontIcon></IconButton>
                         </CardActions>
