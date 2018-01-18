@@ -1,27 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from 'muicss/lib/react/container';
 import Card from 'material-ui/Card';
+
+import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
 
-import CardDescriptionComponent from "./CardDescriptionComponent.js";//cards having data with like/dislike and bookmark actions
+import CardDescriptionComponent from "./CardDescriptionComponent";//cards having data with like/dislike and bookmark actions
+import dummyData from './dummyData';//will give dummy data to render on ui
 
 class CardsIndexComponent extends React.Component{
-    constructor(props){
+    constructor(props,context){
         super(props);
     }
     render(){
+
         return (
             <Container fluid={true}>
                 <div>
-                    {this.props.data.map((info,index) => (
+                    {dummyData.map((info,index) => (
                     <Row  key={index}>
                         <Col sm="1"></Col>
                         <Col sm="10">
-                            <Card className="cards">
+                            <Card className="cards">          
                                 <CardDescriptionComponent detail={info} index={index} />
-                            </Card>
+                            </Card> 
                         </Col>
                         <Col sm="1"></Col>
                     </Row>
@@ -31,4 +34,5 @@ class CardsIndexComponent extends React.Component{
         );
     }
 }
+
 export default CardsIndexComponent;
