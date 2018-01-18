@@ -49,3 +49,17 @@
 .cardButtons{
     padding: 16px;
 }
+.cardDetail{
+    margin-bottom: 20px;
+    padding: 8px 16px 8px 8px;
+}
+.cardDetailImg{
+    // position: absolute;
+    width: 320px;
+    min-height: 280px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-left: 1px;
+    background-size: cover;
+    background-position: 50%;
+}
