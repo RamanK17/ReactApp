@@ -14,7 +14,6 @@ class CardsIndexComponent extends React.Component{
         super(props);
     }
     render(){
-
         return (
             <Container fluid={true}>
                 <div>
