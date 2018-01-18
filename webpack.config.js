@@ -1,8 +1,8 @@
 var config = {
-   entry: './main.js',
+   entry: './index.js',
    output: {
       path:'/',
-      filename: 'index.js',
+      filename: 'bundle.js',
    },
    devServer: {
       inline: true,
