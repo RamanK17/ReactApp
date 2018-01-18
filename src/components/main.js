@@ -1,19 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import * as routes from './../../routes';
+import CardsIndexComponent from "./cardIndexComponent";
+import CardDetailComponent from "./CardDetailComponent";
 
-
-let routesObj = [];
-for (let index = 0; index < routes.routes.length; index++) {
-  routesObj.push(
-  <Route key={index} exact path={routes.routes[index].path} component={routes.routes[index].component} />);
-}
-// console.log("routes Obj", routesObj);
 const Main = () => (
   <main>
     <Switch>
-        {routesObj}
+        <Route exact path="/" component={CardsIndexComponent} />
+        <Route exact path="/:details/:title?" component={CardDetailComponent} />
     </Switch>
   </main>
 );
