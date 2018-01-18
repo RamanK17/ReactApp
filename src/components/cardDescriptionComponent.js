@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import Row from 'muicss/lib/react/row';
-import Col from 'muicss/lib/react/col';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
+
+import PropTypes from 'prop-types';
+import {Router, Route} from 'react-router';
+import Row from 'muicss/lib/react/row';
+import Col from 'muicss/lib/react/col';
 
 class CardDescriptionComponent extends React.Component{
 
@@ -50,6 +52,8 @@ class CardDescriptionComponent extends React.Component{
     }
 
   }
+  
+
     render(){
         const indexValue=this.props.index; //index in props has been taken to perform an action on a particular clicked card's button
         return(
@@ -62,6 +66,7 @@ class CardDescriptionComponent extends React.Component{
                         <CardHeader title={this.props.detail.title} titleStyle={{"fontWeight":"bold","fontSize":"22px","lineHeight":"27px"}}/>
                         <CardText style={{fontWeight:"300",fontSize:"16px",lineHeight:"22px"}}>
                             {this.props.detail.description.substring(0,256)+"...."}
+                            <a style={{cursor:"pointer"}}><span onClick={()=>{this.context.router.history.push("/"+indexValue)}}>more details</span></a>
                         </CardText>
                         <CardActions style={{padding:"5px"}} className="mui--text-left">
                             <IconButton onClick={()=>this.likeClick(indexValue)}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
@@ -73,5 +78,10 @@ class CardDescriptionComponent extends React.Component{
         );
     }
 }
+
+CardDescriptionComponent.contextTypes = {
+    router: PropTypes.object
+};
+
 
 export default CardDescriptionComponent;
