@@ -1,11 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 
-import PropTypes from 'prop-types';
-import {Router, Route} from 'react-router';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
 
@@ -13,10 +12,7 @@ class CardDescriptionComponent extends React.Component{
 
     constructor(props){
         super(props);
-
         this.state={
-          likecounter:1,
-          bookmarkCounter:1,
           likeFlag:false,
           bookmarkFlag:false
         };
@@ -24,38 +20,17 @@ class CardDescriptionComponent extends React.Component{
         this.likeClick=this.likeClick.bind(this);
         this.bookmark=this.bookmark.bind(this);
   }
+
   likeClick(index){ //function for likeDislike click action in particular card
-
-    this.setState({likecounter:this.state.likecounter+1});
-
-    if(((this.state.likecounter+1) % 2) == 0) //condition executes on each click of like icon
-    {
-      this.setState({likeFlag:true}); //if no.of clicks is even,flag will be true
-    }
-    else 
-    {
-      this.setState({likeFlag:false}); //if no. of clicks is odd,flag will be false
-    }
-
+    this.setState({likeFlag:!this.state.likeFlag}); 
   }
   bookmark(index){ //function for bookmark click action in particular card
-
-    this.setState({bookmarkCounter:this.state.bookmarkCounter+1});
-
-    if(((this.state.bookmarkCounter+1) % 2) == 0)//condition executes on each click of like icon
-    {
-      this.setState({bookmarkFlag:true}); //if no.of clicks is even,flag will be true
-    }
-    else
-    {
-      this.setState({bookmarkFlag:false}); //if no. of clicks is odd,flag will be false
-    }
-
+    this.setState({bookmarkFlag:!this.state.bookmarkFlag}); 
   }
   
-
     render(){
         const indexValue=this.props.index; //index in props has been taken to perform an action on a particular clicked card's button
+
         return(
             <div>
                 <Row>
@@ -65,11 +40,11 @@ class CardDescriptionComponent extends React.Component{
                     <Col md="8">
                         <CardHeader title={this.props.detail.title} titleStyle={{"fontWeight":"bold","fontSize":"22px","lineHeight":"27px"}}/>
                         <CardText style={{fontWeight:"300",fontSize:"16px",lineHeight:"22px"}}>
-                            {this.props.detail.description.substring(0,256)+"...."}
-                            <a style={{cursor:"pointer"}}><span onClick={()=>{this.context.router.history.push("/"+indexValue)}}>more details</span></a>
+                            {this.props.detail.description.substring(0,256)+".... "}
+                            <a style={{cursor:"pointer"}}><span onClick={()=>{this.context.router.history.push("/"+indexValue+"/"+this.props.detail.title)}}>read more</span></a>
                         </CardText>
                         <CardActions style={{padding:"5px"}} className="mui--text-left">
-                            <IconButton onClick={()=>this.likeClick(indexValue)}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
+                            <IconButton iconStyle={{color:"cyan"}}onClick={()=>this.likeClick(indexValue)}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
                             <IconButton onClick={()=>this.bookmark(indexValue)} iconStyle={{color:this.state.bookmarkFlag?"yellow":"black"}}><FontIcon className="material-icons">bookmark</FontIcon></IconButton>
                         </CardActions>
                     </Col>
