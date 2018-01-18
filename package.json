@@ -15,10 +15,13 @@
   "license": "ISC",
   "dependencies": {
     "material-ui": "^0.20.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "mixin": "^0.2.0",
     "muicss": "^0.9.20",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.0"
   },
