@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch ,Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
 import Main from "./main";
-
+import CardsIndexComponent from "./cardIndexComponent";
 
 class App extends React.Component {
    constructor(props){
@@ -12,11 +13,27 @@ class App extends React.Component {
    render() {
     return (
         <MuiThemeProvider>
-            <div style={{marginTop:"35px"}} className="mui-container">
-                <Main />
+            <div>
+                <AppBar
+                    title="Incredible India"
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    className="appBar"
+                    style={{position: "fixed"}}
+                    iconClassNameLeft="iconLeft"
+                    onTitleClick={()=>{this.context.router.history.push("/")}}
+                    titleStyle={{cursor:"pointer"}}
+                />
+                <div className="main mui-container">
+                    <Main />
+                </div>
             </div>
         </MuiThemeProvider>
       );
    }
 }
+
+App.contextTypes = {
+    router: PropTypes.object
+};
+
 export default App;

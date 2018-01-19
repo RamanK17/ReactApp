@@ -23,6 +23,18 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+.appBar{
+    background-color: #3498db;
+    text-align: center;
+    top: 0;
+    overflow: hidden;
+}
+.iconLeft{
+    display: none;
+}
+.main{
+    margin-top:135px;
+}
 .cards{
     margin-bottom: 20px;
     padding: 8px 16px 8px 8px;

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from 'material-ui/Card';
 
-import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
 
@@ -14,8 +13,7 @@ class CardsIndexComponent extends React.Component{
         super(props);
     }
     render(){
-        return (
-            <Container fluid={true}>
+        return(
                 <div>
                     {dummyData.map((info,index) => (
                     <Row  key={index}>
@@ -29,7 +27,6 @@ class CardsIndexComponent extends React.Component{
                     </Row>
                     ))}
                 </div>
-            </Container>
         );
     }
 }
