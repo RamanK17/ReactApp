@@ -46,10 +46,18 @@ class CardDetailComponent extends React.Component{
                                         {data.description}
                                     </CardText>
                                     <CardActions style={{padding:"5px",marginLeft:"9px"}} >
-                                        <TextField
-                                            hintText="Share your experience if you have ever visited this place !!"
-                                            style={{display:"block",width:"none"}}
-                                        />
+                                        <Row>
+                                            <Col md="4" className="mui--text-left">
+                                                <IconButton onClick={()=>this.likeClick()}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
+                                                <IconButton onClick={()=>this.bookmark()} iconStyle={{color:this.state.bookmarkFlag?"yellow":"black"}}><FontIcon className="material-icons">bookmark</FontIcon></IconButton>
+                                            </Col>
+                                            <Col md="8" className="mui--text-right">
+                                                <TextField 
+                                                    hintText="Share your experience if you have ever visited this place !!"
+                                                    style={{display:"block",width:"none"}}
+                                                />
+                                            </Col>
+                                        </Row>
                                    </CardActions>
                                 </Col>
                             </Row>
