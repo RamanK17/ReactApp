@@ -1,36 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
-
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
-import dummyData from './dummyData';
+
+import {connect} from 'react-redux';
+import {likeAction,dislikeAction,bookmarkAction} from "./../action/clickActions";
 
 class CardDetailComponent extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-          likeFlag:false,
-          bookmarkFlag:false
-        };
-        
-        this.likeClick=this.likeClick.bind(this);
-        this.bookmark=this.bookmark.bind(this);
     }
-
-    likeClick(){ //function for likeDislike click action in particular card
-         this.setState({likeFlag:!this.state.likeFlag}); 
-    }
-    bookmark(){ //function for bookmark click action in particular card
-        this.setState({bookmarkFlag:!this.state.bookmarkFlag}); 
-    }
-
     render(){
-        const indexValue=this.props.match.params.details; //index coming from route 
-        const data=dummyData[indexValue];
+        const data=this.props.dummyData[this.props.readMoreIndex];
         return(
             <div>
                 <Row>
@@ -48,8 +34,9 @@ class CardDetailComponent extends React.Component{
                                     <CardActions style={{padding:"5px",marginLeft:"9px"}} >
                                         <Row>
                                             <Col md="4" className="mui--text-left">
-                                                <IconButton onClick={()=>this.likeClick()}>{this.state.likeFlag?<FontIcon className="material-icons" >thumb_up</FontIcon>:<FontIcon className="material-icons" >thumb_down</FontIcon>}</IconButton>
-                                                <IconButton onClick={()=>this.bookmark()} iconStyle={{color:this.state.bookmarkFlag?"yellow":"black"}}><FontIcon className="material-icons">bookmark</FontIcon></IconButton>
+                                                <IconButton iconStyle={{color:this.props.likeIndex===this.props.readMoreIndex?"cyan":"black"}} onClick={()=>this.props.likeAction(this.props.readMoreIndex)}><FontIcon className="material-icons" >thumb_up</FontIcon></IconButton>
+                                                <IconButton iconStyle={{color:this.props.dislikeIndex===this.props.readMoreIndex?"green":"black"}} onClick={()=>this.props.dislikeAction(this.props.readMoreIndex)}><FontIcon className="material-icons" >thumb_down</FontIcon></IconButton>
+                                                <IconButton iconStyle={{color:this.props.bookmarkIndex===this.props.readMoreIndex?"yellow":"black"}} onClick={()=>this.props.bookmarkAction(this.props.readMoreIndex)}><FontIcon className="material-icons">bookmark</FontIcon></IconButton>
                                             </Col>
                                             <Col md="8" className="mui--text-right">
                                                 <TextField 
@@ -61,6 +48,11 @@ class CardDetailComponent extends React.Component{
                                    </CardActions>
                                 </Col>
                             </Row>
+                            <Row>
+                                <div className="mui--text-right">
+                                    <span style={{padding:"18px",display:"inline-flex",cursor:"pointer"}}  onClick={()=>this.context.router.history.push("/")} ><i  style={{color:"#2196F3"}} className="material-icons">arrow_back</i><a>GoBack</a></span>
+                                    </div>
+                            </Row>
                         </Card>
                     </Col>
                 </Row>
@@ -69,4 +61,17 @@ class CardDetailComponent extends React.Component{
     }
 }
 
-export default CardDetailComponent;
+CardDetailComponent.contextTypes = {
+    router: PropTypes.object
+};
+
+function mapStateToProps(state) {
+    return {
+        dummyData:state.dataObj,
+        likeIndex:state.likeBookmarkManager.likeIndex,
+        dislikeIndex:state.likeBookmarkManager.dislikeIndex,
+        bookmarkIndex:state.likeBookmarkManager.bookmarkIndex,
+        readMoreIndex:state.likeBookmarkManager.readMoreIndex
+    };
+}
+export default connect(mapStateToProps, {likeAction,dislikeAction,bookmarkAction})(CardDetailComponent);
